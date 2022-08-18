@@ -107,3 +107,28 @@ function handleHover(e) {
     logo.style.opacity = this;
   }
 }
+
+//adding the stickey nav
+
+//the scroll event fires evert time the scrolling is done___
+// window.addEventListener('scroll', function () {
+//   console.log(window.scrollY);
+// });
+
+// usig the intersection observer api
+const header = document.querySelector('.header');
+const obsCallBack = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+};
+const obsOptions = {
+  root: null,
+  threshold: 0,
+  rootMargin:'-90px',
+};
+const observer = new IntersectionObserver(obsCallBack, obsOptions);
+observer.observe(header);
